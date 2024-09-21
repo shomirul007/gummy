@@ -10,9 +10,28 @@ class SubredditAutocomplete(APIView):
         headers = {'User-agent': 'Mozilla/5.0'}
 
         try:
-            response = requests.get(url, headers=headers, timeout=10)  # Set timeout to 10 seconds
-            response.raise_for_status()  # Raise an error for bad responses
-            return Response(response.json(), status=status.HTTP_200_OK)
+            # Fetch subreddit autocomplete data from Reddit API
+            response = requests.get(url, headers=headers, timeout=10)
+            response.raise_for_status()
+
+            # Extract subreddits from the response
+            subreddits = response.json().get('subreddits', [])
+            
+            # Calculate the total number of subreddits
+            total_subreddits = len(subreddits)
+            
+            # Calculate the total number of subscribers (users)
+            total_users = sum(subreddit.get('numSubscribers', 0) for subreddit in subreddits)
+            
+            # Format the response in the desired format
+            result = [{
+                "keyword": keyword,
+                "subreddit": total_subreddits,
+                "users": total_users
+            }]
+            
+            return Response(result, status=status.HTTP_200_OK)
+        
         except Timeout:
             return Response({"error": "Request timed out. Please try again."}, status=status.HTTP_504_GATEWAY_TIMEOUT)
         except requests.exceptions.RequestException as e:
