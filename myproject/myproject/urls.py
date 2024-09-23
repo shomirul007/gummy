@@ -6,4 +6,5 @@ urlpatterns = [
     path('api/subreddit/', include('subreddit.urls')),
     path('api/', include('curated.urls')),
     path('api/', include('posts.urls')),
+    path('reddit/', include('reddit_analysis.urls')),
 ]
