@@ -7,7 +7,14 @@ from rest_framework import status
 
 logger = logging.getLogger(__name__)
 class CuratedAPIView(APIView):
-    keywords = ['Pets', 'Software Developers', 'DevOps', 'Cryptocurrency', 'Marketers','Startup Founders','Stock Investors','Video Editors', 'Generative AI', 'Designers', 'Data Scientists', 'Fitness Enthisiasts', 'Gardners', 'Photographers', 'NFT Collectors', 'Ecommerce', 'SEOs', 'Self-Promoters', 'Parents', 'No-code', 'Cloud Email', 'English Learners', 'Finsncial Independence', '3D Printers', 'Freelancers', 'Copywriters', 'Notion Users', 'Influencers', 'AirBnB Hosts', 'Advertisers', 'Remote Workers', 'Productivity', 'Product Managers', 'SaaS founders', 'B2B Sales', 'Restaurant Owners', 'Nwesletter Creators']
+    keywords = ['Pets', 'Software Developers', 'DevOps', 'Cryptocurrency', 'Marketers',
+                'Startup Founders','Stock Investors','Video Editors', 'Generative AI', 'Designers', 
+                'Data Scientists', 'Fitness Enthusiasts', 'Gardners', 'Photographers', 'NFT Collectors', 
+                'Ecommerce', 'SEOs', 'Self-Promoters', 'Parents', 'No-code', 
+                'Cloud Email', 'English Learners', 'Financial Independence', '3D Printers', 'Freelancers', 
+                'Copywriters', 'Notion Users', 'Influencers', 'AirBnB Hosts', 'Advertisers', 
+                'Remote Workers', 'Productivity', 'Product Managers', 'SaaS founders', 'B2B Sales', 
+                'Restaurant Owners', 'Nwesletter Creators']
     
     def get_subreddit_data(self, keyword):
         url = f"https://www.reddit.com/api/subreddit_autocomplete.json?query={keyword}"

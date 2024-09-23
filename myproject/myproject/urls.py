@@ -5,4 +5,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/subreddit/', include('subreddit.urls')),
     path('api/', include('curated.urls')),
+    path('api/', include('posts.urls')),
 ]
